@@ -6,7 +6,7 @@ const boardSize = 3;
 function run() {
     init();
     drow();
-    move();
+    
     chekForWin();
 
 }
@@ -23,11 +23,19 @@ function init() {
   }
 }
 
+function handleClick(e) {
+  console.log('click', e);
+  if (e.target.className === 'tile' && e.target.innerText !== '0') {
+    move(Number(e.target.innerText));
+  }
+}
+
 function drow() {
 
   const main = document.getElementById('main');
   const boardBlock = document.createElement('div');
   boardBlock.classList.add('board');  
+  boardBlock.addEventListener('click', handleClick);
   main.append(boardBlock);
 
   for(let row = 0; row < boardSize; row++) {
@@ -49,8 +57,20 @@ function drow() {
   console.log(boardBlock);
 }
 
-function move() {
+function getTileCoordinats(num) {
+  for(let row = 0; row < boardSize; row++) {
+    for(let column = 0; column < boardSize; column++) {
+      if (board[row][column] === num)  {
+        return [row, column];
+      }
+    }
+  }  
+} 
 
+function move(num) {
+  //if (num )
+  const tileIndex = getTileCoordinats(num);
+  console.log(tileIndex);
 }
 
 function chekForWin() {
