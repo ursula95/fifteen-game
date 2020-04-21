@@ -5,10 +5,8 @@ const boardSize = 3;
 
 function run() {
     init();
-    drow();
-    
+    drow();   
     chekForWin();
-
 }
 
 function init() {
@@ -67,10 +65,21 @@ function getTileCoordinats(num) {
   }  
 } 
 
+function getZeroCoordinats() {
+  for(let row = 0; row < boardSize; row++) {
+    for(let column = 0; column < boardSize; column++) {
+      if (board[row][column] === 0)  {
+        return [row, column];
+      }
+    }
+  }  
+}
+
 function move(num) {
-  //if (num )
   const tileIndex = getTileCoordinats(num);
+  const zeroIndex = getZeroCoordinats();
   console.log(tileIndex);
+  console.log(zeroIndex);
 }
 
 function chekForWin() {
