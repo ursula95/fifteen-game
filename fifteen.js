@@ -1,12 +1,11 @@
 // TODO add feature get board size from user
 const board = [];
 const boardSize = 3;
-
+let boardBlock;
 
 function run() {
     init();
-    drow();   
-    chekForWin();
+    drow();
 }
 
 function init() {
@@ -19,6 +18,11 @@ function init() {
           counter--;
       }
   }
+  const main = document.getElementById('main');
+  boardBlock = document.createElement('div');
+  boardBlock.classList.add('board');  
+  boardBlock.addEventListener('click', handleClick);
+  main.append(boardBlock);
 }
 
 function handleClick(e) {
@@ -30,11 +34,7 @@ function handleClick(e) {
 
 function drow() {
 
-  const main = document.getElementById('main');
-  const boardBlock = document.createElement('div');
-  boardBlock.classList.add('board');  
-  boardBlock.addEventListener('click', handleClick);
-  main.append(boardBlock);
+  boardBlock.innerHTML = '';
 
   for(let row = 0; row < boardSize; row++) {
     for(let column = 0; column < boardSize; column++) {
@@ -76,10 +76,22 @@ function getZeroCoordinats() {
 }
 
 function move(num) {
-  const tileIndex = getTileCoordinats(num);
-  const zeroIndex = getZeroCoordinats();
-  console.log(tileIndex);
-  console.log(zeroIndex);
+  // const tileIndex = getTileCoordinats(num);
+  const [tRow, tColumn] = getTileCoordinats(num);
+  
+  // const zeroIndex = getZeroCoordinats();
+  const [zRow, zColumn] = getZeroCoordinats();
+
+  if ((tRow == zRow && tColumn == zColumn + 1) ||
+      (tRow == zRow && tColumn == zColumn - 1) ||
+      (tRow == zRow + 1 && tColumn == zColumn) ||
+      (tRow == zRow - 1 && tColumn == zColumn)
+    ) {
+      board[tRow][tColumn] = 0;
+      board[zRow][zColumn] = num;
+      }
+  drow();
+  checkForWin();
 }
 
 function chekForWin() {
