@@ -11,9 +11,9 @@ function run() {
 function init() {
   let counter = boardSize * boardSize - 1;
 
-  for(let row = 0; row < boardSize; row++) {
+  for (let row = 0; row < boardSize; row++) {
       board.push([]);
-      for(let column = 0; column < boardSize; column++) {
+      for (let column = 0; column < boardSize; column++) {
           board[row][column] = counter;
           counter--;
       }
@@ -23,6 +23,8 @@ function init() {
   boardBlock.classList.add('board');  
   boardBlock.addEventListener('click', handleClick);
   main.append(boardBlock);
+
+  console.log(board);
 }
 
 function handleClick(e) {
@@ -36,9 +38,9 @@ function drow() {
 
   boardBlock.innerHTML = '';
 
-  for(let row = 0; row < boardSize; row++) {
-    for(let column = 0; column < boardSize; column++) {
-      if(board[row][column] == 0) {
+  for (let row = 0; row < boardSize; row++) {
+    for (let column = 0; column < boardSize; column++) {
+      if (board[row][column] == 0) {
         const emptyTile = document.createElement('div');
         emptyTile.classList.add('emptyTile');
         emptyTile.innerText = '0';
@@ -51,13 +53,11 @@ function drow() {
       }
     }
   }
-
-  console.log(boardBlock);
 }
 
 function getTileCoordinats(num) {
-  for(let row = 0; row < boardSize; row++) {
-    for(let column = 0; column < boardSize; column++) {
+  for (let row = 0; row < boardSize; row++) {
+    for (let column = 0; column < boardSize; column++) {
       if (board[row][column] === num)  {
         return [row, column];
       }
@@ -66,8 +66,8 @@ function getTileCoordinats(num) {
 } 
 
 function getZeroCoordinats() {
-  for(let row = 0; row < boardSize; row++) {
-    for(let column = 0; column < boardSize; column++) {
+  for (let row = 0; row < boardSize; row++) {
+    for (let column = 0; column < boardSize; column++) {
       if (board[row][column] === 0)  {
         return [row, column];
       }
@@ -94,9 +94,20 @@ function move(num) {
   checkForWin();
 }
 
-function chekForWin() {
-
+function checkForWin() {
+  let counter = 1;
+  for (let row = 0; row < boardSize; row++) {
+    for (let column = 0; column < boardSize; column++) {
+      if (board[row][column] == counter) {
+        counter++;
+        if (row == boardSize - 1 && column == boardSize - 2 && board[row][column] == 8) {
+          alert("You won!");
+          main.innerHTML = '';
+          run();
+        }
+      } 
+    }
+  }
 }
 
 run();
-console.log(board);
