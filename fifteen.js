@@ -1,11 +1,21 @@
 // TODO add feature get board size from user
 const board = [];
-const boardSize = 3;
+let boardSize = 3;
 let boardBlock;
 
 function run() {
+    askSize();
     init();
     drow();
+}
+
+function askSize() {
+  let size = prompt('Select the Board size. Enter a number from 3 to 5.', 3);
+  if (size >= 3 && size <= 5) {
+      boardSize = size;
+  } else {
+    askSize();
+  }
 }
 
 function init() {
@@ -20,7 +30,15 @@ function init() {
   }
   const main = document.getElementById('main');
   boardBlock = document.createElement('div');
-  boardBlock.classList.add('board');  
+  
+  if (boardSize == 3) {
+    boardBlock.classList.add('board');
+  } else if (boardSize == 4) {
+    boardBlock.classList.add('boardForFour');
+  } else {
+    boardBlock.classList.add('boardForFive');
+  }
+
   boardBlock.addEventListener('click', handleClick);
   main.append(boardBlock);
 
