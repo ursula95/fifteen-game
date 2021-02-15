@@ -15,6 +15,10 @@
   "bugs": {
     "url": "https://github.com/ursula95/fifteen-game/issues"
   },
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
   "type": "module",
   "homepage": "https://github.com/ursula95/fifteen-game#readme"
+  
 }
