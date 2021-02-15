@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/ursula95/fifteen-game/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/ursula95/fifteen-game#readme"
 }
