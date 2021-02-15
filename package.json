@@ -19,5 +19,11 @@
     "brain-games": "bin/brain-games.js"
   },
   "type": "module",
-  "homepage": "https://github.com/ursula95/fifteen-game#readme"
+  "homepage": "https://github.com/ursula95/fifteen-game#readme",
+  "dependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "readline-sync": "^1.4.10"
+  }
 }
