@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Realisation of a popular game in Java Script.",
+  "main": "fifteen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ursula95/fifteen-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ursula95/fifteen-game/issues"
+  },
+  "homepage": "https://github.com/ursula95/fifteen-game#readme"
+}
