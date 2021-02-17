@@ -4,15 +4,15 @@ let boardSize = 3;
 let boardBlock;
 
 function run() {
-    askSize();
-    init();
-    drow();
+  askSize();
+  init();
+  drow();
 }
 
 function askSize() {
-  let size = prompt('Select the Board size. Enter a number from 3 to 5.', 3);
+  const size = prompt('Select the Board size. Enter a number from 3 to 5.', 3);
   if (size >= 3 && size <= 5) {
-      boardSize = size;
+    boardSize = size;
   } else {
     askSize();
   }
@@ -22,15 +22,15 @@ function init() {
   let counter = boardSize * boardSize - 1;
 
   for (let row = 0; row < boardSize; row++) {
-      board.push([]);
-      for (let column = 0; column < boardSize; column++) {
-          board[row][column] = counter;
-          counter--;
-      }
+    board.push([]);
+    for (let column = 0; column < boardSize; column++) {
+      board[row][column] = counter;
+      counter--;
+    }
   }
   const main = document.getElementById('main');
   boardBlock = document.createElement('div');
-  
+
   if (boardSize == 3) {
     boardBlock.classList.add('board');
   } else if (boardSize == 4) {
@@ -53,7 +53,6 @@ function handleClick(e) {
 }
 
 function drow() {
-
   boardBlock.innerHTML = '';
 
   for (let row = 0; row < boardSize; row++) {
@@ -76,38 +75,38 @@ function drow() {
 function getTileCoordinats(num) {
   for (let row = 0; row < boardSize; row++) {
     for (let column = 0; column < boardSize; column++) {
-      if (board[row][column] === num)  {
+      if (board[row][column] === num) {
         return [row, column];
       }
     }
-  }  
-} 
+  }
+}
 
 function getZeroCoordinats() {
   for (let row = 0; row < boardSize; row++) {
     for (let column = 0; column < boardSize; column++) {
-      if (board[row][column] === 0)  {
+      if (board[row][column] === 0) {
         return [row, column];
       }
     }
-  }  
+  }
 }
 
 function move(num) {
   // const tileIndex = getTileCoordinats(num);
   const [tRow, tColumn] = getTileCoordinats(num);
-  
+
   // const zeroIndex = getZeroCoordinats();
   const [zRow, zColumn] = getZeroCoordinats();
 
-  if ((tRow == zRow && tColumn == zColumn + 1) ||
-      (tRow == zRow && tColumn == zColumn - 1) ||
-      (tRow == zRow + 1 && tColumn == zColumn) ||
-      (tRow == zRow - 1 && tColumn == zColumn)
-    ) {
-      board[tRow][tColumn] = 0;
-      board[zRow][zColumn] = num;
-      }
+  if ((tRow == zRow && tColumn == zColumn + 1)
+      || (tRow == zRow && tColumn == zColumn - 1)
+      || (tRow == zRow + 1 && tColumn == zColumn)
+      || (tRow == zRow - 1 && tColumn == zColumn)
+  ) {
+    board[tRow][tColumn] = 0;
+    board[zRow][zColumn] = num;
+  }
   drow();
   checkForWin();
 }
@@ -119,11 +118,11 @@ function checkForWin() {
       if (board[row][column] == counter) {
         counter++;
         if (row == boardSize - 1 && column == boardSize - 2 && board[row][column] == 8) {
-          alert("You won!");
+          alert('You won!');
           main.innerHTML = '';
           run();
         }
-      } 
+      }
     }
   }
 }
